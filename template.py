@@ -90,4 +90,3 @@ for filepath in list_of_files:
         logging.info(f"{filename} already exists") # If file already exists AND not empty. Do nothing, just log message
 
 
-        # if you run from bash need to type: "python template.py" to run this file from bash or you can run it in Vscode.
