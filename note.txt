@@ -1,0 +1,309 @@
+1. To start this project, first create a GitHub repository for the Text Summarizer:
+Create GitHub Repository
+    + Go to GitHub Account → Repositories tab
+    + Click New
+    + Name repo: give any name like Text-Summarizer
+    + Choose Public or Private
+    + Add:
+        + README.md
+        + .gitignore → Python
+        + License → MIT license
+    + Click Create repository
+  - Next, click Clone in your GitHub repository and copy the HTTPS link
+  - Then go to the folder where you want to save your project (for example, your NLP folder).
+  - Inside that folder:
+     + Right-click and open Git Bash (or terminal)
+     + Run the following command to clone the repository:
+     + git clone <HTTPS-link>
+  - After cloning, the repository folder (Text-Summarizer) will appear inside your NLP directory.
+  - Finally, open the bash inside the project folder and Run: code . 
+  - This will open the project in VSCode.
+
+2. Inside VSCode, create a file named template.py and add your initialization code.
+  - This file is used to automatically create the entire project structure, including all required
+    folders and files for the project.
+       
+Note:
+
+  + To run the Python file (py file) from the terminal (Bash), use: python template.py
+  + Alternatively, you can run it directly in VSCode by clicking the Run button.
+
+  + After making changes, you can commit and push your changes from VSCode to GitHub by using Git Bash:
+      ++ git add . → stages all changes
+      ++ git commit -m "Folder structure added" → saves changes with a message (you can customize it)
+      ++ git push origin main → uploads changes to GitHub  
+    - After this, all your changes will be pushed to GitHub, and you can see them in your repository.
+  
+  + Also we can do in VSCode:
+      ++ Open Source Control in VSCode(Ctrl + Shift + G)
+      ++ Click + (Stage All Changes)
+      ++ Write a commit message
+      ++ Click ✓ Commit
+      ++ Click Push / Sync Changes (or run git push origin main in terminal)
+
+3. Before creating and setting up the project, you must first create a virtual environment.
+   This is required for every new project.
+  - A virtual environment (often called venv) is an isolated Python workspace dedicated to your
+    project. Instead of installing packages globally on your computer (system), you install them
+    only inside this environment. This keeps your projects clean and prevents version conflicts.
+
+** Creating the Virtual Environment:
+    - Use the following command to create it using Conda: conda create -n texts python=3.8 -y
+      What this means:
+          • conda create → creates a new environment
+          • -n texts → names of the environment: texts
+          • python=3.8 → installs Python version 3.8 inside the environment
+          • -y → automatically confirms the setup (auto-yes, skips the “Proceed [y]/n?” prompt)
+      So, this command creates an isolated Python environment named texts.
+
+** Activating the Environment:
+  - After creating Environment, activate the environment using this code in bash:
+    ++ conda activate texts 
+
+  - In VSCode:
+    ++ Press Ctrl + Shift + P
+    ++ Type:Python: Select Interpreter
+    ++ Select the environment named texts 
+  After this, you can run and write your project code normally. 
+
+ - Important Rule : Whenever you start working in VS Code, you must first activate the virtual
+    environment.
+
+4. Write requirements.txt file:
+    - NLP / Transformers: Means using huggingface API
+      + transformers:Library from Hugging Face for using pretrained NLP models(BERT, GPT, T5, etc.)
+        for tasks like summarization.
+      + transformers[sentencepiece]:Adds SentencePiece tokenizer support, required for some models 
+        like T5.
+      + datasets:Helps load, process, and manage large NLP datasets easily.       
+
+    - Evaluation Metrics:
+      + sacrebleu:Used to evaluate text generation quality using BLEU score.
+        A library used to evaluate text generation tasks. In text summarization, it computes the
+        BLEU score by comparing generated text with reference summaries to measure quality and
+        similarity to human-written output.
+      + rouge_score:A Python library used to evaluate text summarization. It compares a generated
+        summary with a reference summary using metrics like ROUGE-1, ROUGE-2, and ROUGE-L.
+        Measures quality of summaries by comparing with reference text (ROUGE metrics).      
+
+    - Data & File Handling:
+      + py7zr:Used to work with .7z (7-Zip) compressed files. You can use it to extract or create
+        archive(.7z compressed files).
+        ++ .7z: A file format for compressed archives (like ZIP), used to reduce file size and
+           store multiple files together.
+      + pandas:Data analysis library for working with tables (DataFrames).
+ 
+    - NLP & Utilities:
+      + nltk:Natural Language Toolkit for basic NLP tasks like tokenization, text processing, 
+        and cleaning.
+      + tqdm:Adds progress bars to loops for better visibility.
+      + PyYAML:Reads and writes YAML configuration files.
+
+    - Visualization & Deep Learning:
+      + matplotlib:Used for plotting graphs and visualizations.
+      + torch:Core deep learning framework (PyTorch) for building and training models.
+        (if you have GPU you can install PyTorch on GPU) 
+
+    - Development Tools:
+      + notebook:Runs Jupyter Notebook for interactive coding.
+
+    - AWS Integration:
+      + boto3:AWS SDK to interact with services like S3 (upload/download files).
+      + mypy-boto3-s3:Adds type hints for boto3 S3 (helps with autocomplete and error checking).
+
+    - Backend / API:
+      + fastapi==0.78.0:Framework for building fast APIs (useful for deploying ML models-serve ML models).
+      + uvicorn==0.18.3:ASGI server to run FastAPI applications.
+      + Jinja2==3.1.2:Template engine for generating HTML pages.
+
+    - Project Utilities:
+      + python-box==6.0.2:Lets you access dictionary keys like attributes (cleaner code)
+      + ensure==1.0.2:Used for type and condition validation in code.
+      + -e .:Installs your current project as a package (editable mode for development).
+             Required for setup.py installation in development mode.      
+
+5. Writing setup.py file:
+    - import setuptools:Used to package and install Python projects. It converts your code into an
+      installable package so it can be easily reused or shared.
+    - Bug Tracker:A platform (such as GitHub Issues) used to report, track, and fix code problems.
+
+6. install all requirements:  
+   + pip install -r requirements.txt
+   + Add the requirements.txt file to GitHub
+
+- At this point, the installation and project setup are complete. 
+- Next step: implement logging, exception handling, and utility modules
+
+7. Custom Logging Setup:
+   - Go to the logging folder and open the constructure file __init__.py
+   - Write your custom logging configuration code in this file
+
+   ** Test the Logging:
+      - Open main.py and add: 
+        • from textsummarizer.logging import logger
+        • logger.info("Welcome to our custom logging") 
+
+      - Run the script from the bash terminal (make sure your environment is activated):
+        • python main.py 
+        
+      +++ If You Get Import Errors, This usually happens because Python cannot find the src folder.
+        - Fix (Bash): PYTHONPATH=src python main.py
+        - Fix (VS Code PowerShell): 
+          • env:PYTHONPATH="src"
+          • python main.py
+
+      - Output: You will see the log message In the terminal 
+                And inside the logs folder → running_logs.log
+
+
+8. Writing Utilities Module & Exception Handling:
+   - Create the utils module and implement exception handling. Instead of writing a custom exception,
+     use Box exceptions for cleaner and simpler code.
+   - Why use a utilities (utils) module?
+     In a project, some functions are used repeatedly across multiple files. 
+     Instead of rewriting the same code again and again, we place these reusable functions inside
+     a utilities module (utils/common.py).
+   - This allows us to:
+     + Write the function once
+     + Import and reuse it anywhere in the project
+     + Keep the code clean, organized, and maintainable
+   - These commonly used functions are called utility functions because they provide 
+     general-purpose support for different parts of the code.
+   - Instead of writing code frequently, we define it in common.py and simply import it whenever
+     needed. 
+   - utils → common.py: add your utility functions (Functions use frequently) and exception
+     handling logic there.
+
+    ** First Function:
+      ++ read_yaml() function: This function safely reads a YAML file and makes it easier to
+         use in Python code.
+      ++  Reads a YAML file from a given path. 
+      ++ Converts its content into a ConfigBox (so you can use dot notation like data.key).
+      ++ Uses logger to show a success message
+      ++ Error handling: If the YAML file is empty → raises ValueError,
+      ++ If any other error happens → it raises that error
+
+    ** Second Function:
+      ++ Each component creates its own directories. 
+      ++ This function is used to create those directories, including an "artifacts" folder.
+      ++ Inside this folder, we define subdirectories for different stages of the pipeline,
+      ++ such as "data ingestion", where the data will be stored and processed.
+
+    ** Third Function:
+      ++ Returns the file size in KB.
+
+  • We return the YAML file as a ConfigBox so that we can access dictionary values using
+     dot notation. Instead of using keys like data["key"],ConfigBox allows us to use data.key, 
+     making the code cleaner, easier to read, and more convenient to work with. 
+
+  • We use @ensure_annotations on top of each function to enforce correct input data types.
+    It ensures that the arguments passed to a function match the defined type hints. 
+    If an incorrect data type is provided, it raises an error immediately.
+    This helps catch bugs early and makes the code more reliable and robust.
+
+
+9. Then, the next step is to document the workflow in the README so it clearly shows which folders
+    need to be updated and in what order.
+
+10. Download the dataset, then upload it to GitHub as a zip file by dragging and dropping it into
+    the repository, and finally commit the changes. (Before data ingestion step.)
+    Also you can Upload correctly via GitHub UI:
+      • Go to your repository on GitHub
+      • Click Add file → Upload files
+      • Drag your zip file into that area (not just anywhere on the page)
+      • Scroll down
+      • Commit changes section
+      • Write a message like: Add raw dataset zip
+      • Click Commit changes
+    Or Instead of drag & drop, write in Bash:
+      • git add data.zip
+      • git commit -m "Add dataset"
+      • git push origin main
+
+*** For data science projects, don’t upload large zip files directly to GitHub long-term. Instead:
+    ** Use GitHub Releases
+    ** Or store data in S3 / Kaggle / Google Drive
+    ** Or use .gitignore for raw data
+
+++ To get the data URL from GitHub, open the file in the repository, click right on the View raw , and then choose copy link address.
+
+11. To implement the data ingestion component:
+    - First need to create an experimental Jupyter Notebook in the research folder and name it
+      01_data_ingestion.ipynb.
+    
+  12. Based on the workflow:
+      1. First step is to update the config.yaml file:
+         In config.yaml file, defining an artifacts folder, where all outputs of the pipeline 
+         will be stored. All files like downloaded data and outputs will be saved inside it.
+       - After that, you need to create the data ingestion configuration. you store important things 
+         like file paths and the dataset URL. Then you can read or change these values in your code 
+         instead of writing them directly, which makes the project cleaner and easier to manage.
+      2. Update params.yaml: In this case, we dont have any parameters. Whenever we define the model
+         configuration, we usually include parameters, but at this stage, they are not required.
+      3. Update entity: for create entity that will be used to return the type of a function, Open
+         01_data_ingestion.ipynb and define an entity that will represent the return type of a 
+         function. To define the return structure clearly, we use a dataclass, which helps us 
+         organize the output in a structured way.
+        - The entity class variables (names and types) are defined based on the values in the
+          config.yaml file. For example, we take root_dir from the config.yaml file and use it in
+          this class. Since the value represents a file path, its type is defined as Path, 
+          like this: root_dir: Path
+      4. Update the configuration manager in src config (configuration.py): Still I will do in 01_data_ingestion.ipynb
+        - We import constants and utils.common.py for configuration manager because they help keep
+          the project organized and reusable.
+          + constants: Stores fixed values like file names, paths, config keys in one place so we
+            don’t hardcode them.
+          + utils.common: Provides reusable helper functions like:reading yaml files (read_yaml)
+            and creating folders (create_directories) which are created in common.py
+        - Inside constants/__init__.py, we define the paths of config.yaml and params.yaml 
+          so they can be accessed easily from anywhere in the project.
+        * These two files are the core configuration files in ML/NLP projects.
+          + config.yaml: Defines project structure and workflow settings like data paths, 
+            model input/output paths, folder structure: It controls "what to do"
+          + params.yaml: Defines model hyperparameters like learning rate, batch size, epochs,
+            model settings: It controls “how the model behaves”
+          + We store paths in constants so the project becomes maintainable, reusable, and 
+            error-free, especially in large ML pipelines. 
+        - Create a class and define a constructor inside it. The constructor should read and 
+          initialize values from constants, config, and params files.
+          + To avoid errors caused by an empty params.yaml file, add some default values to it.
+        - Then create the folder specified in the config.yaml file under artifacts_root.
+        - Then create class for data ingestion. This class:loads config + params once, creates
+           required folders automatically, prepares structured configs for each pipeline step 
+      5. Update the components:
+        - Still in 01_data_ingestion: import useful libraries.
+        - create Class: DataIngestion where has 1 constructor + 2 methods.
+          This class is responsible for: downloading dataset and extracting dataset (zip file)
+          + Constructor: Get and initialize the data ingestion configuration.
+            ++ Stores the configuration (paths, URLs, folders)
+            ++ config contains all settings. We save it as self.config so we can use it in other methods.
+            ++ When you create the class, you pass configuration, and it stores it so all methods can use it.
+          + Method: download_file(): Downloads dataset from the internet if it doesn’t already exist.
+          + Method: extract_zip_file(): Extracts downloaded ZIP file into a folder
+            ++ zipfile.ZipFile(...): Creates a ZipFile object (opens the zip file)
+            ++ self.config.local_data_file: path of the downloaded zip file
+            ++ 'r': means read mode (we are only reading/extracting it)
+            ++ as zip_ref: Gives a short name to the opened zip file
+            ++ zip_ref: represents the opened zip file.
+      6. Update the pipeline:
+        - Still in 01_data_ingestion run the code: This step runs the full data ingestion pipeline:
+          load config → get settings → download data → extract data → handle errors if anything fails.
+        - In the pipeline, I first initialize the ConfigurationManager to load the project settings. 
+          Then I call the get_data_ingestion_config() method to get the data ingestion settings and store them.
+        - Next, I pass this configuration to the DataIngestion component.
+          Inside this component, I execute two main methods: first, download_file() to download the dataset,
+          and then extract_zip_file() to extract the downloaded ZIP file. 
+        - After running the pipeline, the data is ingested into the notebook.
+      *** After testing all the steps in 01_data_ingestion, copy each section and paste it into the
+          corresponding project modules/files. So, for organizing your project structure:
+            + Put all entity classes in src/entity/__init__.py
+            + Put the configuration manager code in src/config/configuration.py
+            + Create src/components/data_ingestion.py and move all data ingestion logic (download, extract, etc.) there
+            + Create src/pipeline/stage_01_data_ingestion.py and place the full pipeline execution code in that file.
+      7. Update the main.py:
+        - To run the pipeline, go to main.py and call the pipeline function.
+        - Then open the terminal (bash) and execute: python main.py 
+           This will run the full pipeline and you can verify that everything is working correctly.
+      *** The first component, Data Ingestion, is now completed successfully. 
+          Next, you need to implement the remaining components, such as the Data Validation component
+          and the Data Transformation component.
