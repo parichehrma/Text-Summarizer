@@ -2,7 +2,7 @@
 # artifacts_root: artifacts
 
 # # Data ingestion config to save important things like file paths and the dataset URL:
-
+# data ingestion configuration section:
 # data_ingestion: # Root name:
 #   # Sub folders:
 #   root_dir: artifacts/data_ingestion
@@ -12,9 +12,20 @@
 
 
 artifacts_root: artifacts
-
 data_ingestion:
   root_dir: artifacts/data_ingestion
-  source_url: https://raw.githubusercontent.com/parichehrma/Text-Summarizer/main/data.zip
+  source_url: https://raw.githubusercontent.com/parichehrma/Text-Summarizer/main/samsumdata.zip
   local_data_file: artifacts/data_ingestion/data.zip
   unzip_dir: artifacts/data_ingestion
+
+# data validation configuration section:
+# data_validation:
+#   root_dir: artifacts/data_validation # Folder where all validation outputs will be stored
+#   STATUS_FILE: artifacts/data_validation/status.txt # Path of the file that will store validation result (True or False)
+#   ALL_REQUIRED_FILES: ["train", "test", "validation"] # List of required dataset files that must exist before training
+
+
+data_validation:
+  root_dir: artifacts/data_validation
+  STATUS_FILE: artifacts/data_validation/status.txt
+  ALL_REQUIRED_FILES: ["train", "test", "validation"]

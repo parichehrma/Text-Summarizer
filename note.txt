@@ -227,11 +227,11 @@ Note:
 
 ++ To get the data URL from GitHub, open the file in the repository, click right on the View raw , and then choose copy link address.
 
-11. To implement the data ingestion component:
+11. Implement the data ingestion component:
     - First need to create an experimental Jupyter Notebook in the research folder and name it
       01_data_ingestion.ipynb.
     
-  12. Based on the workflow:
+  - Based on the workflow:
       1. First step is to update the config.yaml file:
          In config.yaml file, defining an artifacts folder, where all outputs of the pipeline 
          will be stored. All files like downloaded data and outputs will be saved inside it.
@@ -304,6 +304,66 @@ Note:
         - To run the pipeline, go to main.py and call the pipeline function.
         - Then open the terminal (bash) and execute: python main.py 
            This will run the full pipeline and you can verify that everything is working correctly.
+       
+        ++ Commit and push every changes to GitHub.      
       *** The first component, Data Ingestion, is now completed successfully. 
           Next, you need to implement the remaining components, such as the Data Validation component
           and the Data Transformation component.
+      *** The flow:
+              ConfigurationManager → load config
+                      ↓
+              DataIngestionConfig → get settings (URL, paths)
+                      ↓
+              DataIngestion → download data
+                      ↓
+              extract_zip_file → unzip dataset
+                      ↓
+              try/except → error handling
+
+12. Implement the data validation component:
+  - Now that the Data Ingestion component is completed, the next step is to create the Data Validation component.
+    The Data Validation component verify that the dataset exists correctly inside the artifacts folder.
+  - We perform data validation because after data ingestion, the data may not always be in the correct format.
+    If invalid or missing data can cause errors or poor performance.
+  - So before training the model, we verify that the dataset is complete and correctly structured inside the data validation stage.
+  - Create a new notebook called 02_data_validation.ipynb in the research folder and follow the same workflow
+    used in 01_data_ingestion.ipynb. Since both are components, the overall structure remains the same; only the
+    logic changes.
+      + First, Choose the correct kernel
+      + Second, change the working directory
+      + Then follow the workflow step by step for the Data Validation component. 
+  - Based on the workflow:
+    1. Update the config.yaml:
+      - Update config.yaml to include data validation configuration. It will create a new folder called 
+        "data_validation" inside artifacts, and store all validation-related outputs there.
+        Inside this folder will generate a status.txt file that checks whether all required dataset files exist.
+        If all files are present, it returns True; otherwise, it returns False.
+      - Define a variable called All_Required_Files, which contains the list of all necessary files needed for
+        training. During validation, we check whether all these required files are present or not.
+    2. Update the params.yaml:
+        We dont have any parameters. Whenever we define the model
+        configuration, we usually include parameters, but at this stage, they are not required.
+    3. Update the entity:
+       This defines a **read-only data class** called `DataValidationConfig` that stores configuration for data
+       validation, including the folder path where validation outputs are saved (`root_dir`), the path of the
+       status file (`STATUS_FILE`) that records whether validation passed or failed, and a list of required
+       dataset files (`ALL_REQUIRED_FILES`) that must exist before training.
+    4. update the configuration manager:
+       This ConfigurationManager class loads configuration and parameter files, creates the main artifacts
+       directory, and provides a method get_data_validation_config() that reads data validation settings from
+       config.yaml, creates the validation folder, and returns a DataValidationConfig object containing the
+       validation directory path, status file path, and list of required files needed for model training.
+    5. Update the components:
+       This code checks whether all required dataset files exist in the ingestion folder by comparing them with
+       ALL_REQUIRED_FILES. It writes the validation result (True or False) into a status.txt file inside the 
+       artifacts folder. Finally, it returns the validation status and raises an error if anything goes wrong.
+      - We can also extend data validation to include checks like data types and column verification,
+        but for now we are only validating whether the required folder and files exist.
+    6. Update the pipeline:
+       Initializes config, runs data validation, and checks if all required files exist, while showing errors
+       if anything fails.
+    ** After testing all the steps in 02_data_validation, copy each section and paste it into the corresponding
+       project modules/files. Only for components and pipeline, create separate files and paste the code there.
+       For the remaining sections, place them after the ingestion code in the same file.
+    7. Update the main.py:
+       Paste the related pipeline code into main.py, then run it from the terminal using: python main.py
