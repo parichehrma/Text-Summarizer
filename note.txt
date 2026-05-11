@@ -344,10 +344,11 @@ Note:
         We dont have any parameters. Whenever we define the model
         configuration, we usually include parameters, but at this stage, they are not required.
     3. Update the entity:
-       This defines a **read-only data class** called `DataValidationConfig` that stores configuration for data
+       This defines a read-only data class called `DataValidationConfig` that stores configuration for data
        validation, including the folder path where validation outputs are saved (`root_dir`), the path of the
        status file (`STATUS_FILE`) that records whether validation passed or failed, and a list of required
-       dataset files (`ALL_REQUIRED_FILES`) that must exist before training.
+       dataset files (`ALL_REQUIRED_FILES`) that must exist before training. 
+       Get all these information from config.yaml file.
     4. update the configuration manager:
        This ConfigurationManager class loads configuration and parameter files, creates the main artifacts
        directory, and provides a method get_data_validation_config() that reads data validation settings from
@@ -367,3 +368,33 @@ Note:
        For the remaining sections, place them after the ingestion code in the same file.
     7. Update the main.py:
        Paste the related pipeline code into main.py, then run it from the terminal using: python main.py
+
+13. Implement the third component: Data Transformation
+  - In this component, you need to convert your data into features, so all feature engineering and data
+    transformation steps should be implemented here.
+  - I will also complete all the workflow steps for this component as well.
+    1. Update the config.yaml:
+       Take dataset from ingestion output, transform it using Pegasus tokenizer, and save results in a separate folder.
+      + I used tokenizer_name: google/pegasus-cnn_dailymail, which is a pretrained tokenizer from Hugging Face.
+        It belongs to the Pegasus model trained specifically for text summarization and is used to convert text
+        into tokens (numbers that the model can understand).
+      + We use Pegasus because it is specialized for summarization, so it gives better and more accurate results
+        compared to general tokenizers.
+      + Why use this tokenizer? Because it is already trained on large summarization datasets, so it:
+          ++ understands long sentences better
+          ++ produces high-quality summaries
+          ++ saves time (no need to train from scratch)
+      + Comparison with others (very simple)
+          ++ Pegasus tokenizer → best for summarization tasks (high quality)
+          ++ BERT tokenizer → better for classification and understanding text
+          ++ GPT tokenizer → general-purpose, good for generation but not specialized for summarization
+    2. Update the params.yaml:
+      We dont have any parameters. Whenever we define the model configuration, we usually include parameters,
+      but at this stage, they are not required.
+    3. Update the entity:
+       This entity simply holds all configuration values needed for data transformation:
+       where the transformed data will be saved, the path to the input data coming from data ingestion,
+       and which tokenizer to use (the tokenizer name is a string).
+      - It will automatically download the tokenizer model from Hugging Face.
+    4. Update the configuration manager:
+    

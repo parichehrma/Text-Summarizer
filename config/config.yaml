@@ -25,7 +25,21 @@ data_ingestion:
 #   ALL_REQUIRED_FILES: ["train", "test", "validation"] # List of required dataset files that must exist before training
 
 
+# data_transformation: 
+#   root_dir: artifacts/data_transformation # All transformed data (output) will be saved here
+#   data_path: artifacts/data_ingestion/samsum_dataset # Data Transformation will take data from here (input data path)
+#   tokenizer_name: google/pegasus-cnn_dailymail # Use this Hugging Face model tokenizer name
+
 data_validation:
   root_dir: artifacts/data_validation
   STATUS_FILE: artifacts/data_validation/status.txt
   ALL_REQUIRED_FILES: ["train", "test", "validation"]
+
+
+
+
+data_transformation: 
+  root_dir: artifacts/data_transformation
+  data_path: artifacts/data_ingestion/samsumdata/samsum_dataset
+  tokenizer_name: google/pegasus-cnn_dailymail
+
