@@ -1,1 +1,32 @@
-key: value
+TrainingArguments:
+  num_train_epochs: 1
+  warmup_steps: 50
+  per_device_train_batch_size: 1
+  weight_decay: 0.01
+  logging_steps: 100
+  evaluation_strategy: steps
+  eval_steps: 5000
+  save_steps: 5000
+  gradient_accumulation_steps: 2 
+
+
+
+  # TrainingArguments:
+  # num_train_epochs: 1
+
+  # warmup_steps: 100   # ↓ faster warmup (was 500)
+
+  # per_device_train_batch_size: 2  # ↑ if GPU allows (was 1)
+
+  # per_device_eval_batch_size: 2
+
+  # weight_decay: 0.01
+
+  # logging_steps: 50   # ↓ less logging overhead (was 10)
+
+  # evaluation_strategy: steps
+  # eval_steps: 2000    # ↑ evaluate less often (was 500)
+
+  # save_steps: 2000    # ↓ save more often than 1e6 (important for debugging)
+
+  # gradient_accumulation_steps: 8  # ↓ from 16 (faster updates)

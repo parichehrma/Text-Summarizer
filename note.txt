@@ -397,4 +397,56 @@ Note:
        and which tokenizer to use (the tokenizer name is a string).
       - It will automatically download the tokenizer model from Hugging Face.
     4. Update the configuration manager:
+       This function prepares and returns all required settings for the data transformation stage, including paths
+       and tokenizer information, and ensures necessary directories exist before processing starts.
+    5. Update the components:
+       This function converts raw dialogue and summary text into tokenized numerical features so the model can
+       learn to generate summaries from conversations. 
+       This code is used to prepare text data for an AI summarization model like Pegasus or T5. The model cannot 
+       understand normal text directly. It only understands numbers (tokens). So this code converts text → tokens.  
+      ** Truncation means cutting off extra text when it is too long: If your text is longer than the maximum
+         limit (for example 1024 tokens), truncation will: remove the extra part,  keep only the first part that fits.
+    *** I used T5_small tokenizer at this time to get faster result.    
+    6. Update the pipeline:
+       It loads config → prepares transformer → processes dataset → saves result → shows errors if any.
+    7. Update the main.py:
+       Paste the related pipeline code into main.py, then run it from the terminal using: python main.py
+
+14. Implement model trainer component:
+  - In this component, you need to train the model. First, create a notebook file named 04_model_trainer.ipynb
+    inside the research folder and implement all the training steps there. After testing and verifying that
+    everything works correctly in the notebook, move each section into its corresponding production file in the
+    project structure.
+  - I will also complete all the workflow steps for this component as well.
+    1. Update the config.yaml:
+       Configuration for model training, including save path, dataset path, and pretrained model checkpoint.
+    2. Update the params.yaml:
+       When preparing the model, we need to define the parameters. You can either hardcode the model parameters
+       or store them in the `params.yaml` file. It is better to keep all model-related parameters in `params.yaml`
+       so that whenever you want to modify or reuse them, you can simply load them from there. This approach makes
+       the project more organized, flexible, and convenient to maintain.
+      - These parameters control how your model learns. Think of them as training “settings” that balance speed,
+        accuracy, and memory.   
+    3. Update the entity:
+       Stores all model training configuration parameters in one structured and reusable class.
+    4. Update the configuration manager:
+       It loads configuration and training parameters from YAML files, creates required folders, and returns a 
+       structured ModelTrainerConfig object for training the model.
+    5. Update the components:
+       It loads a pretrained Pegasus model, prepares dataset, sets training rules, trains the model using Hugging
+       Face Trainer, and saves the final model and tokenizer.
+      -  This step fine-tunes a Pegasus summarization model on your dataset and saves the trained model + tokenizer for later use.
+    6. Update the pipeline:
+       This step initializes configuration, builds the trainer, and starts model training with error handling.
+    7. Update the main.py:
+       Paste the related pipeline code into main.py, then run it from the terminal using: python main.py
+  *** I used T5_small model at this time for model to get faster result.
+    ** T5-small is a small, fast model that gives decent but basic summaries, best for learning or 
+       low-resource systems.
+    ** PEGASUS (cnn_dailymail) is much larger and slower but produces significantly higher-quality,
+       more human-like summaries.
+    In short: T5-small = speed + simplicity, PEGASUS = accuracy + strong summarization quality.
+
+15. Implement model evaluation component:
     
+

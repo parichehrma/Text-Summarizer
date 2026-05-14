@@ -1,15 +1,3 @@
-# Create artifacts folder, where all outputs of the pipeline will be stored.
-# artifacts_root: artifacts
-
-# # Data ingestion config to save important things like file paths and the dataset URL:
-# data ingestion configuration section:
-# data_ingestion: # Root name:
-#   # Sub folders:
-#   root_dir: artifacts/data_ingestion
-#   source_URL: https://github.com/parichehrma/Text-Summarizer/raw/refs/heads/main/samsumdata.zip
-#   local_data_file: artifacts/data_ingestion/data.zip
-#   unzip_dir: artifacts/data_ingestion
-
 
 artifacts_root: artifacts
 data_ingestion:
@@ -18,28 +6,17 @@ data_ingestion:
   local_data_file: artifacts/data_ingestion/data.zip
   unzip_dir: artifacts/data_ingestion
 
-# data validation configuration section:
-# data_validation:
-#   root_dir: artifacts/data_validation # Folder where all validation outputs will be stored
-#   STATUS_FILE: artifacts/data_validation/status.txt # Path of the file that will store validation result (True or False)
-#   ALL_REQUIRED_FILES: ["train", "test", "validation"] # List of required dataset files that must exist before training
-
-
-# data_transformation: 
-#   root_dir: artifacts/data_transformation # All transformed data (output) will be saved here
-#   data_path: artifacts/data_ingestion/samsum_dataset # Data Transformation will take data from here (input data path)
-#   tokenizer_name: google/pegasus-cnn_dailymail # Use this Hugging Face model tokenizer name
-
 data_validation:
   root_dir: artifacts/data_validation
   STATUS_FILE: artifacts/data_validation/status.txt
   ALL_REQUIRED_FILES: ["train", "test", "validation"]
 
-
-
-
 data_transformation: 
   root_dir: artifacts/data_transformation
   data_path: artifacts/data_ingestion/samsumdata/samsum_dataset
-  tokenizer_name: google/pegasus-cnn_dailymail
+  tokenizer_name: t5-small
 
+model_trainer:
+  root_dir: artifacts/model_trainer
+  data_path: artifacts/data_transformation
+  model_ckpt: t5-small
