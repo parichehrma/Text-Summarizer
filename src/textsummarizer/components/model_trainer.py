@@ -20,10 +20,10 @@ class ModelTrainer:
 
         
         tokenizer = AutoTokenizer.from_pretrained(self.config.model_ckpt) 
-        model_pegasus = AutoModelForSeq2SeqLM.from_pretrained(self.config.model_ckpt).to(device) 
+        model_t5 = AutoModelForSeq2SeqLM.from_pretrained(self.config.model_ckpt).to(device) 
 
         
-        seq2seq_data_collator = DataCollatorForSeq2Seq(tokenizer, model=model_pegasus) 
+        seq2seq_data_collator = DataCollatorForSeq2Seq(tokenizer, model=model_t5) 
 
         
         dataset_samsum_pt = load_from_disk(self.config.data_path) 
@@ -70,7 +70,7 @@ class ModelTrainer:
         """
         
         trainer = Trainer(  
-            model=model_pegasus, 
+            model=model_t5, 
             args=trainer_args,  
             #tokenizer=tokenizer,  
             data_collator=seq2seq_data_collator,  
@@ -82,8 +82,8 @@ class ModelTrainer:
         trainer.train()
 
         # save trained model
-        model_pegasus.save_pretrained(
-            os.path.join(self.config.root_dir, "pegasus-samsum-model")
+        model_t5.save_pretrained(
+            os.path.join(self.config.root_dir, "t5-samsum-model")
         )
 
         # save tokenizer for later use

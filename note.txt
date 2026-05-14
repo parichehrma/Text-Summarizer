@@ -448,5 +448,47 @@ Note:
     In short: T5-small = speed + simplicity, PEGASUS = accuracy + strong summarization quality.
 
 15. Implement model evaluation component:
-    
+    In this component, I will evaluate the trained model.
+    First, create a notebook file named 05_model_evaluation.ipynb inside the research folder and
+    implement all the training steps there. After testing and verifying that everything works correctly
+    in the notebook, move each section into its corresponding production file in the project structure.
+  - I will also complete all the workflow steps for this component as well.
+  1. Update the config.yaml:
+     This YAML configuration helps the evaluation component store all settings needed for the model
+     evaluation stage.
+      - where the evaluation dataset is → load evaluation dataset
+      - where the trained model is saved → load the trained model
+      - where tokenizer files are located → load the tokenizer
+      - calculate evaluation metrics to measure model performance
+      - where evaluation results should be saved → save metrics like ROUGE score
+  2. Update the params.yaml:    
+     I didn’t change any parameters in this component.
+  3. Update the entity:
+     This step creates a structured container that stores all settings needed for evaluating a trained
+     NLP model. It helps your pipeline: load dataset, load trained model, load tokenizer,
+     run evaluation, save evaluation metrics.
+     It organizes all evaluation paths in one clean, fixed object so your code is easier to manage
+     and less error-prone.
+  4. Update the  configuration manager:
+     It acts as the central configuration manager for the evaluation stage, ensuring all paths and
+     settings are organized, consistent, and reusable.
+      - Loads configuration files (config.yaml, params.yaml)
+      - Reads evaluation settings
+      - Creates required folders
+      - Builds a structured ModelEvaluationConfig object
+      - Returns it to the evaluation pipeline
+  5. Update the components:
+     This code defines a complete model evaluation system for a text summarization model (T5)
+     It evaluates how good your trained summarization model is by:
+     - generating summaries
+     - comparing them with real summaries
+     - calculating ROUGE scores
+     - saving results
+  6. Update the pipeline:
+     This code runs the full model evaluation pipeline: it loads configuration, initializes the 
+     evaluation class, executes the model evaluation (generating summaries and computing ROUGE scores),
+     and raises any errors if something fails.
+  7. Update the main.py:
+     Paste the related pipeline code into main.py, then run it from the terminal using: python main.py
+     
 
