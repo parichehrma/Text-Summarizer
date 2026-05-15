@@ -34,7 +34,7 @@ Note:
       ++ git push origin main → uploads changes to GitHub  
     - After this, all your changes will be pushed to GitHub, and you can see them in your repository.
   
-  + Also we can do in VSCode:
+  + Also I can do in VSCode:
       ++ Open Source Control in VSCode(Ctrl + Shift + G)
       ++ Click + (Stage All Changes)
       ++ Write a commit message
@@ -161,7 +161,7 @@ Note:
      use Box exceptions for cleaner and simpler code.
    - Why use a utilities (utils) module?
      In a project, some functions are used repeatedly across multiple files. 
-     Instead of rewriting the same code again and again, we place these reusable functions inside
+     Instead of rewriting the same code again and again, I place these reusable functions inside
      a utilities module (utils/common.py).
    - This allows us to:
      + Write the function once
@@ -169,7 +169,7 @@ Note:
      + Keep the code clean, organized, and maintainable
    - These commonly used functions are called utility functions because they provide 
      general-purpose support for different parts of the code.
-   - Instead of writing code frequently, we define it in common.py and simply import it whenever
+   - Instead of writing code frequently, I define it in common.py and simply import it whenever
      needed. 
    - utils → common.py: add your utility functions (Functions use frequently) and exception
      handling logic there.
@@ -186,13 +186,13 @@ Note:
     ** Second Function:
       ++ Each component creates its own directories. 
       ++ This function is used to create those directories, including an "artifacts" folder.
-      ++ Inside this folder, we define subdirectories for different stages of the pipeline,
+      ++ Inside this folder, I define subdirectories for different stages of the pipeline,
       ++ such as "data ingestion", where the data will be stored and processed.
 
     ** Third Function:
       ++ Returns the file size in KB.
 
-  • We return the YAML file as a ConfigBox so that we can access dictionary values using
+  • We return the YAML file as a ConfigBox so that I can access dictionary values using
      dot notation. Instead of using keys like data["key"],ConfigBox allows us to use data.key, 
      making the code cleaner, easier to read, and more convenient to work with. 
 
@@ -238,24 +238,24 @@ Note:
        - After that, you need to create the data ingestion configuration. you store important things 
          like file paths and the dataset URL. Then you can read or change these values in your code 
          instead of writing them directly, which makes the project cleaner and easier to manage.
-      2. Update params.yaml: In this case, we dont have any parameters. Whenever we define the model
-         configuration, we usually include parameters, but at this stage, they are not required.
+      2. Update params.yaml: In this case, I dont have any parameters. Whenever I define the model
+         configuration, I usually include parameters, but at this stage, they are not required.
       3. Update entity: for create entity that will be used to return the type of a function, Open
          01_data_ingestion.ipynb and define an entity that will represent the return type of a 
-         function. To define the return structure clearly, we use a dataclass, which helps us 
+         function. To define the return structure clearly, I use a dataclass, which helps us 
          organize the output in a structured way.
         - The entity class variables (names and types) are defined based on the values in the
-          config.yaml file. For example, we take root_dir from the config.yaml file and use it in
+          config.yaml file. For example, I take root_dir from the config.yaml file and use it in
           this class. Since the value represents a file path, its type is defined as Path, 
           like this: root_dir: Path
       4. Update the configuration manager in src config (configuration.py): Still I will do in 01_data_ingestion.ipynb
         - We import constants and utils.common.py for configuration manager because they help keep
           the project organized and reusable.
-          + constants: Stores fixed values like file names, paths, config keys in one place so we
+          + constants: Stores fixed values like file names, paths, config keys in one place so I
             don’t hardcode them.
           + utils.common: Provides reusable helper functions like:reading yaml files (read_yaml)
             and creating folders (create_directories) which are created in common.py
-        - Inside constants/__init__.py, we define the paths of config.yaml and params.yaml 
+        - Inside constants/__init__.py, I define the paths of config.yaml and params.yaml 
           so they can be accessed easily from anywhere in the project.
         * These two files are the core configuration files in ML/NLP projects.
           + config.yaml: Defines project structure and workflow settings like data paths, 
@@ -276,13 +276,13 @@ Note:
           This class is responsible for: downloading dataset and extracting dataset (zip file)
           + Constructor: Get and initialize the data ingestion configuration.
             ++ Stores the configuration (paths, URLs, folders)
-            ++ config contains all settings. We save it as self.config so we can use it in other methods.
+            ++ config contains all settings. We save it as self.config so I can use it in other methods.
             ++ When you create the class, you pass configuration, and it stores it so all methods can use it.
           + Method: download_file(): Downloads dataset from the internet if it doesn’t already exist.
           + Method: extract_zip_file(): Extracts downloaded ZIP file into a folder
             ++ zipfile.ZipFile(...): Creates a ZipFile object (opens the zip file)
             ++ self.config.local_data_file: path of the downloaded zip file
-            ++ 'r': means read mode (we are only reading/extracting it)
+            ++ 'r': means read mode (I are only reading/extracting it)
             ++ as zip_ref: Gives a short name to the opened zip file
             ++ zip_ref: represents the opened zip file.
       6. Update the pipeline:
@@ -325,7 +325,7 @@ Note:
     The Data Validation component verify that the dataset exists correctly inside the artifacts folder.
   - We perform data validation because after data ingestion, the data may not always be in the correct format.
     If invalid or missing data can cause errors or poor performance.
-  - So before training the model, we verify that the dataset is complete and correctly structured inside the data validation stage.
+  - So before training the model, I verify that the dataset is complete and correctly structured inside the data validation stage.
   - Create a new notebook called 02_data_validation.ipynb in the research folder and follow the same workflow
     used in 01_data_ingestion.ipynb. Since both are components, the overall structure remains the same; only the
     logic changes.
@@ -339,10 +339,10 @@ Note:
         Inside this folder will generate a status.txt file that checks whether all required dataset files exist.
         If all files are present, it returns True; otherwise, it returns False.
       - Define a variable called All_Required_Files, which contains the list of all necessary files needed for
-        training. During validation, we check whether all these required files are present or not.
+        training. During validation, I check whether all these required files are present or not.
     2. Update the params.yaml:
-        We dont have any parameters. Whenever we define the model
-        configuration, we usually include parameters, but at this stage, they are not required.
+        We dont have any parameters. Whenever I define the model
+        configuration, I usually include parameters, but at this stage, they are not required.
     3. Update the entity:
        This defines a read-only data class called `DataValidationConfig` that stores configuration for data
        validation, including the folder path where validation outputs are saved (`root_dir`), the path of the
@@ -359,7 +359,7 @@ Note:
        ALL_REQUIRED_FILES. It writes the validation result (True or False) into a status.txt file inside the 
        artifacts folder. Finally, it returns the validation status and raises an error if anything goes wrong.
       - We can also extend data validation to include checks like data types and column verification,
-        but for now we are only validating whether the required folder and files exist.
+        but for now I are only validating whether the required folder and files exist.
     6. Update the pipeline:
        Initializes config, runs data validation, and checks if all required files exist, while showing errors
        if anything fails.
@@ -389,7 +389,7 @@ Note:
           ++ BERT tokenizer → better for classification and understanding text
           ++ GPT tokenizer → general-purpose, good for generation but not specialized for summarization
     2. Update the params.yaml:
-      We dont have any parameters. Whenever we define the model configuration, we usually include parameters,
+      We dont have any parameters. Whenever I define the model configuration, I usually include parameters,
       but at this stage, they are not required.
     3. Update the entity:
        This entity simply holds all configuration values needed for data transformation:
@@ -421,7 +421,7 @@ Note:
     1. Update the config.yaml:
        Configuration for model training, including save path, dataset path, and pretrained model checkpoint.
     2. Update the params.yaml:
-       When preparing the model, we need to define the parameters. You can either hardcode the model parameters
+       When preparing the model, I need to define the parameters. You can either hardcode the model parameters
        or store them in the `params.yaml` file. It is better to keep all model-related parameters in `params.yaml`
        so that whenever you want to modify or reuse them, you can simply load them from there. This approach makes
        the project more organized, flexible, and convenient to maintain.
@@ -488,7 +488,61 @@ Note:
      This code runs the full model evaluation pipeline: it loads configuration, initializes the 
      evaluation class, executes the model evaluation (generating summaries and computing ROUGE scores),
      and raises any errors if something fails.
+  * To convert these codes into modular coding, paste each related part into its corresponding file, and then run the pipeline through the `main.py` file.
   7. Update the main.py:
      Paste the related pipeline code into main.py, then run it from the terminal using: python main.py
+
+  ++ If the ROUGE score result is low, it does not necessarily mean the model is bad. The score may be
+     low because I used the test dataset instead of the training dataset to save time. In addition, I
+      used the T5-small model instead of the PEGASUS model, and the training was performed for only
+      one epoch. All of these factors can reduce the final summarization performance.
+
      
+16. I completed all components, including data ingestion, data validation, data transformation, model
+    training, and model evaluation. Now, the next step is to build a web application and use FastAPI
+    to create the prediction pipeline.
+  - The training pipeline is already completed and working properly, and I am able to train the model
+    successfully. However, if I want to generate predictions on new user-provided data, I need to
+    create a prediction pipeline.
+  - For this, I will build a FastAPI-based backend and a simple user interface (UI) where users can
+    enter text and receive the generated summary from the trained model. This will be implemented in
+    the next step of the project.
+  1. Create prediction.py:
+     Now, for creating the prediction pipeline, I will create a prediction.py file inside the pipeline
+     folder and write the prediction-related code there.
+    - This step creates a prediction pipeline for text summarization using the trained NLP model to generate summaries for new user input. It allows users to:
+      + Enter new text or dialogue
+      + Load the trained model
+      + Generate a summary
+      + Display the final summarized output
+  2. Create Web Application:
+     After that, I need to integrate the prediction pipeline with FastAPI to build a web application.
+     For this, I will create and work in the `app.py` file.
+  - This step builds a FastAPI web application for a text summarization project, where users can train
+    the model and generate summaries from input text. It also provides API documentation through
+    `/docs`. The app runs locally using Uvicorn on port 8080.
+  - In this step, we first initialize the FastAPI application. Then we create a root endpoint that
+    redirects the user to the FastAPI automatic documentation interface (Swagger UI). 
+    After that, we define two main routes:
+    1. /train route: This triggers the training process by running `python main.py` using `os.system()`.
+      This command is executed as a system-level instruction to start the full training pipeline
+      automatically, and it returns a success message once completed.
+    2. /predict route: This endpoint initializes the `PredictionPipeline` class, creates an object,
+       calls the prediction method, and returns the generated summary as output.
+    3. Initialize host and port. So when you open your app in the browser, it sends you to: http://127.0.0.1:8000/docs 
+    4. Run in terminal with "python app.py"
+    - With FastAPI, there is no need to manually write HTML code for API testing because FastAPI 
+      automatically provides an interactive API documentation UI (Swagger UI) for you.
+    - Go to the home link, then open the `/train` endpoint, click 'Try it out', and then click 'Execute'
+      to start the training process. Before doing that, remove the existing `artifacts` dataset folder
+      to avoid conflicts with old files.
+    - After training, make sure the trained model and tokenizer files exist. If they do not exist,
+      the prediction pipeline will return an error. If they already exist, there is no need to train
+      the model again, and the application can generate summaries quickly using the saved model.
+    - I chose FastAPI because it provides a built-in interactive UI for testing APIs, so there is no 
+      need to manually create HTML pages.
+
+
+  
+
 
