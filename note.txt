@@ -9,30 +9,30 @@ Create GitHub Repository
         + .gitignore → Python
         + License → MIT license
     + Click Create repository
-  - Next, click Clone in your GitHub repository and copy the HTTPS link
-  - Then go to the folder where you want to save your project (for example, your NLP folder).
+  - Next, click Clone in my GitHub repository and copy the HTTPS link
+  - Then go to the folder where I want to save my project (for example, my NLP folder).
   - Inside that folder:
      + Right-click and open Git Bash (or terminal)
      + Run the following command to clone the repository:
      + git clone <HTTPS-link>
-  - After cloning, the repository folder (Text-Summarizer) will appear inside your NLP directory.
+  - After cloning, the repository folder (Text-Summarizer) will appear inside my NLP directory.
   - Finally, open the bash inside the project folder and Run: code . 
   - This will open the project in VSCode.
 
-2. Inside VSCode, create a file named template.py and add your initialization code.
+2. Inside VSCode, create a file named template.py and add my initialization code.
   - This file is used to automatically create the entire project structure, including all required
     folders and files for the project.
        
 Note:
 
   + To run the Python file (py file) from the terminal (Bash), use: python template.py
-  + Alternatively, you can run it directly in VSCode by clicking the Run button.
+  + Alternatively, I can run it directly in VSCode by clicking the Run button.
 
-  + After making changes, you can commit and push your changes from VSCode to GitHub by using Git Bash:
+  + After making changes, I can commit and push my changes from VSCode to GitHub by using Git Bash:
       ++ git add . → stages all changes
-      ++ git commit -m "Folder structure added" → saves changes with a message (you can customize it)
+      ++ git commit -m "Folder structure added" → saves changes with a message (I can customize it)
       ++ git push origin main → uploads changes to GitHub  
-    - After this, all your changes will be pushed to GitHub, and you can see them in your repository.
+    - After this, all my changes will be pushed to GitHub, and I can see them in my repository.
   
   + Also I can do in VSCode:
       ++ Open Source Control in VSCode(Ctrl + Shift + G)
@@ -41,11 +41,11 @@ Note:
       ++ Click ✓ Commit
       ++ Click Push / Sync Changes (or run git push origin main in terminal)
 
-3. Before creating and setting up the project, you must first create a virtual environment.
+3. Before creating and setting up the project, I must first create a virtual environment.
    This is required for every new project.
-  - A virtual environment (often called venv) is an isolated Python workspace dedicated to your
-    project. Instead of installing packages globally on your computer (system), you install them
-    only inside this environment. This keeps your projects clean and prevents version conflicts.
+  - A virtual environment (often called venv) is an isolated Python workspace dedicated to my
+    project. Instead of installing packages globally on my computer (system), I install them
+    only inside this environment. This keeps my projects clean and prevents version conflicts.
 
 ** Creating the Virtual Environment:
     - Use the following command to create it using Conda: conda create -n texts python=3.8 -y
@@ -64,9 +64,9 @@ Note:
     ++ Press Ctrl + Shift + P
     ++ Type:Python: Select Interpreter
     ++ Select the environment named texts 
-  After this, you can run and write your project code normally. 
+  After this, I can run and write my project code normally. 
 
- - Important Rule : Whenever you start working in VS Code, you must first activate the virtual
+ - Important Rule : Whenever I start working in VS Code, I must first activate the virtual
     environment.
 
 4. Write requirements.txt file:
@@ -102,7 +102,7 @@ Note:
     - Visualization & Deep Learning:
       + matplotlib:Used for plotting graphs and visualizations.
       + torch:Core deep learning framework (PyTorch) for building and training models.
-        (if you have GPU you can install PyTorch on GPU) 
+        (if I have GPU I can install PyTorch on GPU) 
 
     - Development Tools:
       + notebook:Runs Jupyter Notebook for interactive coding.
@@ -117,13 +117,13 @@ Note:
       + Jinja2==3.1.2:Template engine for generating HTML pages.
 
     - Project Utilities:
-      + python-box==6.0.2:Lets you access dictionary keys like attributes (cleaner code)
+      + python-box==6.0.2:Lets I access dictionary keys like attributes (cleaner code)
       + ensure==1.0.2:Used for type and condition validation in code.
-      + -e .:Installs your current project as a package (editable mode for development).
+      + -e .:Installs my current project as a package (editable mode for development).
              Required for setup.py installation in development mode.      
 
 5. Writing setup.py file:
-    - import setuptools:Used to package and install Python projects. It converts your code into an
+    - import setuptools:Used to package and install Python projects. It converts my code into an
       installable package so it can be easily reused or shared.
     - Bug Tracker:A platform (such as GitHub Issues) used to report, track, and fix code problems.
 
@@ -136,14 +136,14 @@ Note:
 
 7. Custom Logging Setup:
    - Go to the logging folder and open the constructure file __init__.py
-   - Write your custom logging configuration code in this file
+   - Write my custom logging configuration code in this file
 
    ** Test the Logging:
       - Open main.py and add: 
         • from textsummarizer.logging import logger
         • logger.info("Welcome to our custom logging") 
 
-      - Run the script from the bash terminal (make sure your environment is activated):
+      - Run the script from the bash terminal (make sure my environment is activated):
         • python main.py 
         
       +++ If You Get Import Errors, This usually happens because Python cannot find the src folder.
@@ -171,14 +171,14 @@ Note:
      general-purpose support for different parts of the code.
    - Instead of writing code frequently, I define it in common.py and simply import it whenever
      needed. 
-   - utils → common.py: add your utility functions (Functions use frequently) and exception
+   - utils → common.py: add my utility functions (Functions use frequently) and exception
      handling logic there.
 
     ** First Function:
       ++ read_yaml() function: This function safely reads a YAML file and makes it easier to
          use in Python code.
       ++  Reads a YAML file from a given path. 
-      ++ Converts its content into a ConfigBox (so you can use dot notation like data.key).
+      ++ Converts its content into a ConfigBox (so I can use dot notation like data.key).
       ++ Uses logger to show a success message
       ++ Error handling: If the YAML file is empty → raises ValueError,
       ++ If any other error happens → it raises that error
@@ -207,10 +207,10 @@ Note:
 
 10. Download the dataset, then upload it to GitHub as a zip file by dragging and dropping it into
     the repository, and finally commit the changes. (Before data ingestion step.)
-    Also you can Upload correctly via GitHub UI:
-      • Go to your repository on GitHub
+    Also I can Upload correctly via GitHub UI:
+      • Go to my repository on GitHub
       • Click Add file → Upload files
-      • Drag your zip file into that area (not just anywhere on the page)
+      • Drag my zip file into that area (not just anywhere on the page)
       • Scroll down
       • Commit changes section
       • Write a message like: Add raw dataset zip
@@ -227,6 +227,16 @@ Note:
 
 ++ To get the data URL from GitHub, open the file in the repository, click right on the View raw , and then choose copy link address.
 
+### Workflows for each component in this project:
+    - Update config.yaml
+    - Update params.yaml
+    - Update entity
+    - Update the configuration manager in src config
+    - update the conponents
+    - update the pipeline
+    - update the main.py
+    - update the app.py
+
 11. Implement the data ingestion component:
     - First need to create an experimental Jupyter Notebook in the research folder and name it
       01_data_ingestion.ipynb.
@@ -235,8 +245,8 @@ Note:
       1. First step is to update the config.yaml file:
          In config.yaml file, defining an artifacts folder, where all outputs of the pipeline 
          will be stored. All files like downloaded data and outputs will be saved inside it.
-       - After that, you need to create the data ingestion configuration. you store important things 
-         like file paths and the dataset URL. Then you can read or change these values in your code 
+       - After that, I need to create the data ingestion configuration. I store important things 
+         like file paths and the dataset URL. Then I can read or change these values in my code 
          instead of writing them directly, which makes the project cleaner and easier to manage.
       2. Update params.yaml: In this case, I dont have any parameters. Whenever I define the model
          configuration, I usually include parameters, but at this stage, they are not required.
@@ -277,7 +287,7 @@ Note:
           + Constructor: Get and initialize the data ingestion configuration.
             ++ Stores the configuration (paths, URLs, folders)
             ++ config contains all settings. We save it as self.config so I can use it in other methods.
-            ++ When you create the class, you pass configuration, and it stores it so all methods can use it.
+            ++ When I create the class, I pass configuration, and it stores it so all methods can use it.
           + Method: download_file(): Downloads dataset from the internet if it doesn’t already exist.
           + Method: extract_zip_file(): Extracts downloaded ZIP file into a folder
             ++ zipfile.ZipFile(...): Creates a ZipFile object (opens the zip file)
@@ -295,7 +305,7 @@ Note:
           and then extract_zip_file() to extract the downloaded ZIP file. 
         - After running the pipeline, the data is ingested into the notebook.
       *** After testing all the steps in 01_data_ingestion, copy each section and paste it into the
-          corresponding project modules/files. So, for organizing your project structure:
+          corresponding project modules/files. So, for organizing my project structure:
             + Put all entity classes in src/entity/__init__.py
             + Put the configuration manager code in src/config/configuration.py
             + Create src/components/data_ingestion.py and move all data ingestion logic (download, extract, etc.) there
@@ -303,11 +313,11 @@ Note:
       7. Update the main.py:
         - To run the pipeline, go to main.py and call the pipeline function.
         - Then open the terminal (bash) and execute: python main.py 
-           This will run the full pipeline and you can verify that everything is working correctly.
+           This will run the full pipeline and I can verify that everything is working correctly.
        
         ++ Commit and push every changes to GitHub.      
       *** The first component, Data Ingestion, is now completed successfully. 
-          Next, you need to implement the remaining components, such as the Data Validation component
+          Next, I need to implement the remaining components, such as the Data Validation component
           and the Data Transformation component.
       *** The flow:
               ConfigurationManager → load config
@@ -370,7 +380,7 @@ Note:
        Paste the related pipeline code into main.py, then run it from the terminal using: python main.py
 
 13. Implement the third component: Data Transformation
-  - In this component, you need to convert your data into features, so all feature engineering and data
+  - In this component, I need to convert my data into features, so all feature engineering and data
     transformation steps should be implemented here.
   - I will also complete all the workflow steps for this component as well.
     1. Update the config.yaml:
@@ -404,7 +414,7 @@ Note:
        learn to generate summaries from conversations. 
        This code is used to prepare text data for an AI summarization model like Pegasus or T5. The model cannot 
        understand normal text directly. It only understands numbers (tokens). So this code converts text → tokens.  
-      ** Truncation means cutting off extra text when it is too long: If your text is longer than the maximum
+      ** Truncation means cutting off extra text when it is too long: If my text is longer than the maximum
          limit (for example 1024 tokens), truncation will: remove the extra part,  keep only the first part that fits.
     *** I used T5_small tokenizer at this time to get faster result.    
     6. Update the pipeline:
@@ -413,7 +423,7 @@ Note:
        Paste the related pipeline code into main.py, then run it from the terminal using: python main.py
 
 14. Implement model trainer component:
-  - In this component, you need to train the model. First, create a notebook file named 04_model_trainer.ipynb
+  - In this component, I need to train the model. First, create a notebook file named 04_model_trainer.ipynb
     inside the research folder and implement all the training steps there. After testing and verifying that
     everything works correctly in the notebook, move each section into its corresponding production file in the
     project structure.
@@ -423,9 +433,9 @@ Note:
     2. Update the params.yaml:
        When preparing the model, I need to define the parameters. You can either hardcode the model parameters
        or store them in the `params.yaml` file. It is better to keep all model-related parameters in `params.yaml`
-       so that whenever you want to modify or reuse them, you can simply load them from there. This approach makes
+       so that whenever I want to modify or reuse them, I can simply load them from there. This approach makes
        the project more organized, flexible, and convenient to maintain.
-      - These parameters control how your model learns. Think of them as training “settings” that balance speed,
+      - These parameters control how my model learns. Think of them as training “settings” that balance speed,
         accuracy, and memory.   
     3. Update the entity:
        Stores all model training configuration parameters in one structured and reusable class.
@@ -435,7 +445,7 @@ Note:
     5. Update the components:
        It loads a pretrained Pegasus model, prepares dataset, sets training rules, trains the model using Hugging
        Face Trainer, and saves the final model and tokenizer.
-      -  This step fine-tunes a Pegasus summarization model on your dataset and saves the trained model + tokenizer for later use.
+      -  This step fine-tunes a Pegasus summarization model on my dataset and saves the trained model + tokenizer for later use.
     6. Update the pipeline:
        This step initializes configuration, builds the trainer, and starts model training with error handling.
     7. Update the main.py:
@@ -465,9 +475,9 @@ Note:
      I didn’t change any parameters in this component.
   3. Update the entity:
      This step creates a structured container that stores all settings needed for evaluating a trained
-     NLP model. It helps your pipeline: load dataset, load trained model, load tokenizer,
+     NLP model. It helps my pipeline: load dataset, load trained model, load tokenizer,
      run evaluation, save evaluation metrics.
-     It organizes all evaluation paths in one clean, fixed object so your code is easier to manage
+     It organizes all evaluation paths in one clean, fixed object so my code is easier to manage
      and less error-prone.
   4. Update the  configuration manager:
      It acts as the central configuration manager for the evaluation stage, ensuring all paths and
@@ -479,7 +489,7 @@ Note:
       - Returns it to the evaluation pipeline
   5. Update the components:
      This code defines a complete model evaluation system for a text summarization model (T5)
-     It evaluates how good your trained summarization model is by:
+     It evaluates how good my trained summarization model is by:
      - generating summaries
      - comparing them with real summaries
      - calculating ROUGE scores
@@ -521,18 +531,18 @@ Note:
   - This step builds a FastAPI web application for a text summarization project, where users can train
     the model and generate summaries from input text. It also provides API documentation through
     `/docs`. The app runs locally using Uvicorn on port 8080.
-  - In this step, we first initialize the FastAPI application. Then we create a root endpoint that
+  - In this step, I first initialize the FastAPI application. Then I create a root endpoint that
     redirects the user to the FastAPI automatic documentation interface (Swagger UI). 
-    After that, we define two main routes:
+    After that, I define two main routes:
     1. /train route: This triggers the training process by running `python main.py` using `os.system()`.
       This command is executed as a system-level instruction to start the full training pipeline
       automatically, and it returns a success message once completed.
     2. /predict route: This endpoint initializes the `PredictionPipeline` class, creates an object,
        calls the prediction method, and returns the generated summary as output.
-    3. Initialize host and port. So when you open your app in the browser, it sends you to: http://127.0.0.1:8000/docs 
+    3. Initialize host and port. So when I open my app in the browser, it sends I to: http://127.0.0.1:8000/docs 
     4. Run in terminal with "python app.py"
     - With FastAPI, there is no need to manually write HTML code for API testing because FastAPI 
-      automatically provides an interactive API documentation UI (Swagger UI) for you.
+      automatically provides an interactive API documentation UI (Swagger UI) for I.
     - Go to the home link, then open the `/train` endpoint, click 'Try it out', and then click 'Execute'
       to start the training process. Before doing that, remove the existing `artifacts` dataset folder
       to avoid conflicts with old files.
@@ -541,8 +551,365 @@ Note:
       the model again, and the application can generate summaries quickly using the saved model.
     - I chose FastAPI because it provides a built-in interactive UI for testing APIs, so there is no 
       need to manually create HTML pages.
+    - To stop the application execution, use Ctrl + C in the terminal.
+17. Now I have completed the full implementation of the text summarization project. The next step is
+    to deploy the project to the cloud.
+  - To deploy this project, I will first integrate Docker. The service I plan to use is Amazon
+    Elastic Container Service (ECS).
+  ### Deployment Steps
+    - First, I will build a Docker image of the source code. Then, I will push this image to Amazon
+      Elastic Container Registry (ECR). After that, ECS will pull the Docker image from ECR it into the EC2
+      instance and run it as a container. I will launch an EC2 instance, which acts as a virtual machine in the
+      cloud. Then, I will configure port mapping so the application can be accessed publicly.
+      Finally, the application will be available public on the internet.
+    - Docker builds my app into a container, ECR stores it, ECS runs it, and EC2 is the machine that executes it.
+    ++ Docker is a tool that packages my application and all its dependencies into a single 
+       container so it can run the same way on any computer or server.
+    ++ Docker packages my project (code + libraries + dependencies) into one container.
+      + It works the same on every computer
+      + No “it works on my machine” problem
+      + Easy to deploy on cloud
+    ++ What is AWS EC2?  EC2 = a virtual computer in the cloud
+      + You can run my app on it
+      + Like my own server but online
+    ++ What is AWS ECR?  ECR = Docker image storage
+      + You store my Docker image here
+      + Like a cloud “Docker hub”
+    ++ What is AWS ECS? ECS = service that runs Docker containers
+    + It takes my image from ECR
+    + Runs it on EC2 automatically
+    + Manages my containers
+  + work flows: Code → Docker Image → ECR → ECS → EC2 → Running App
+  + Description: About the deployment
 
+      1. Build docker image of the source code
 
+      2. Push your docker image to ECR
+
+      3. Launch Your EC2 
+
+      4. Pull Your image from ECR in EC2
+
+      5. Lauch your docker image in EC2
+
+  + These are the complete deployment steps, forming a CI/CD pipeline. Whenever I push the code to
+    GitHub, it will be automatically built and deployed to the cloud. I will implement this CI/CD
+    workflow using GitHub Actions.
+  1. Build Docker Image:
+     In this step, I write code in the Dockerfile to build a Docker image that packages the project for deployment.
+     It tells Docker how to set up the application environment and package the entire project into a container image.
+    - It builds a ready-to-run environment for my text summarization project. It:
+      - sets up Python environment
+      - installs dependencies
+      - copies your code
+      - prepares ML libraries
+      - runs your FastAPI app
+    - This Dockerfile packages your NLP project into a container so it can be easily deployed and run on any
+      machine or cloud server.
+  2. Setup CI/CD deployment:
+    After creating the Dockerfile, the next step is to set up CI/CD deployment. For this, I will create
+    a main.yaml file inside the .github/workflows directory. This file will define the CI/CD pipeline,
+    including the logic and steps required to automatically build, test, and deploy the project whenever code
+    is pushed to GitHub.
+    - This is a CI/CD pipeline using GitHub Actions. It automatically checks the code (CI), builds a Docker image,
+      pushes the image to AWS ECR, pulls the image on EC2 instance, stops the old container, runs the latest version,
+      and deploys the FastAPI application automatically.
+    - This workflow automates the deployment process, so there is no need for manual deployment. Whenever code is 
+      pushed to GitHub, the application is automatically updated and deployed to the cloud, making deployment faster,
+      safer, and production-ready.
+    - Overall, this pipeline automatically builds, stores, and deploys my Dockerized FastAPI application to AWS EC2
+       using GitHub Actions.
+  - GitHub Actions CI/CD workflow: In the `main.yaml` file, there are three main stages.
+
+    1. The first stage is "Continuous Integration (CI)": In this stage, some basic commands are executed, such as
+       commands for testing. The workflow listens for jobs whenever code is pushed to the `main` branch in GitHub,
+       and then the deployment pipeline starts automatically.
+    2. The second stage is "Continuous Delivery (CD)": After the Continuous Integration stage is completed
+       successfully, the Continuous Delivery stage starts. In this step, I log in to my AWS account using credentials
+       stored securely in GitHub Secrets. Then, I build the Docker image and push it to Amazon ECR.
+    3. The third stage is "Continuous Deployment": In this stage, I again log in to AWS, pull the latest Docker
+       image from ECR, and run it inside the EC2 instance. Before starting the new container, the workflow checks
+       whether another container is already running. If a container exists, it stops and removes the old one before
+       running the updated version.
+    - During the first deployment, this container check is not really necessary because no container exists yet.
+      However, from the second deployment onward, this step is important to ensure the old container is stopped 
+      before starting the new one.
   
+  ++ The `main.yaml` file is mostly reusable for other projects as well. Usually, you only need to change the
+      project or container name while keeping the rest of the workflow the same.
+
+  ++ Now everything is configured in this file, and the next step is to follow the deployment process.
+
+3. AWS-CICD-Deployment-with-Github-Actions
+   For this project, I will use small EC2 instances instead of GPU instances to reduce cost, since GPU instances
+   are significantly more expensive. Deployment on AWS is done step by step:
+
+    ## 1. Login to AWS console:
+          First, I will log in to my AWS account.
+
+    ## 2. Create IAM user for deployment :  (Create IAM User for Deployment and Attach Required Policies in AWS IAM.)
+          First, go to the AWS Console home page and search for IAM (Identity and Access Management), then open it.
+          I do not want to provide full access to my AWS account, so I will only give access to two AWS services:
+          ECR and EC2.
+        - To do this, I will create an IAM user and provide access only to these two services.
+        Steps:
+          - Go to AWS Console and search IAM
+          - Go to IAM
+          - Click Users
+          - Add Users (Then give a username; in my case, I used `texts`) 
+          - Select Attach Policies Directly to add permissions and choose these two policies:
+            * AmazonEC2ContainerRegistryFullAccess
+            * AmazonEC2FullAccess
+          - Tick both policies
+          - Create the user.
+      - After the user is created, go back to the Users page and open the user you just created (`texts`). 
+        - Then go to the "Security Credentials" tab
+        - Under Access Keys, click Create Access Key
+        - Select Command Line Interface (CLI)
+        - Tick the confirmation box saying “I understand the recommendations,...” 
+        - Create Access Key        
+      - Finally, download the credentials as a CSV file and save it securely because it will be needed later for 
+        deployment and GitHub Secrets configuration.
+      - policies:
+          1. EC2 access : It is virtual machine
+          2. ECR: Elastic Container registry to save your docker image in aws
+
+      - Policy: For deployment on AWS, I need to set up the necessary IAM policies to provide full access to Amazon
+        ECR so I can manage Docker images easily within my AWS account.
+      - These policies give your AWS account permission to use Docker storage (ECR) and cloud servers (EC2) for deployment.
+      - We use policies to give permission to access AWS services. Without these permissions, you cannot push images
+        to ECR or run EC2 instances. With the correct policies, you can easily build, store, and deploy your Docker application.
+          1. AmazonEC2ContainerRegistryFullAccess : Gives full access to ECR (Elastic Container Registry).
+            Think of it as: permission to use Docker storage in AWS. You can:
+                - push Docker images
+                - pull Docker images
+                - manage repositories
+
+          2. AmazonEC2FullAccess: Gives full access to EC2 (virtual machines).
+            Think of it as: permission to manage cloud servers. You can:
+                - create EC2 instances
+                - start/stop servers
+                - configure networking      
+          
+    ## 3. Create ECR repo to store/save docker image (Save the URI: 566373416292.dkr.ecr.us-east-1.amazonaws.com/text-s)
+      - After creating the IAM user, the next step is to create an ECR repository to store Docker images.
+      - Go to the AWS Console home page and search for ECR (Elastic Container Registry).
+          - Open ECR and click Get Started.
+          - Choose whether you want the repository to be Public or Private. I selected Private.
+          - Enter a repository name. I used text-s as the repository name.
+          - Click Create Repository.
+      - After the repository is created, copy the repository URI/URL. Paste and save this URL in the README file
+        under the section “Create ECR Repository” because it will be needed later during deployment and GitHub 
+        Actions configuration.
+      
+    ## 4. Create EC2 machine (Ubuntu): (Launch an EC2 Instance for Deployment)
+
+      - The next step is to launch an EC2 machine. Go back to the AWS Console home page and search for EC2.
+        EC2 is a virtual machine service in the cloud.
+      - Open EC2 and click Launch Instance and enter an instance name. I used `texts-machine`
+      - Under the Quick Start tab, choose Ubuntu
+      - Next box, select the first option: Ubuntu Server 22.04 LTS SSD Volume Type
+        ++ For this project, I am using a CPU instance because GPU instances are much more expensive.
+           If I wanted to train large deep learning models entirely on the cloud, including the training pipeline
+           and prediction pipeline, then I would choose a GPU instance. However, for this project, a CPU instance 
+           is enough because i trained and predicted on my local machine.
+      - Under Instance Type, do not use `t2.micro` because it only provides 1 GB memory, which is too small for NLP
+        projects. NLP models and text data require more memory.I  selected `t2.xlarge`, which provides around 16 GB
+        memory, making it more suitable for this project.
+      - Next, click Create New Key Pair and give the key pair a name. I used `textkey`.
+      - Click Create Key Pair and the `.pem` file will be downloaded automatically.
+        ++ This `.pem` file is used to connect to the EC2 machine from a local computer using tools like PuTTY,or any
+           other service like service called mobile stream , MobaXterm, or SSH clients.
+           In this project, I am not using the file directly, but the key pair must still be created and selected.
+      - In the Network Settings section, enable:
+        ++ Allow HTTP traffic
+        ++ Allow HTTPS traffic
+      - In the Configure Storage section, increase the storage size. I selected at least 30 GB because the project
+        includes trained models, datasets, and Docker images, which require additional storage.
+      - Keep the rest of the settings as default and click Launch Instance
+      - After launching, click View All Instances at the bottom. Wait until the Instance State changes to Running.
+      - Then click the Instance ID, and at the top click Connect.
+      - Click Connect again to open the EC2 browser terminal.
+      - This launches a terminal where I can execute the commands required for deployment and configuration.
+
+    ## 5. Open EC2 and Install docker in EC2 Machine:
+      - Now, inside the EC2 terminal, I will execute some commands related to package management updates:      
+          #optinal
+          sudo apt-get update -y
+          sudo apt-get upgrade
+        - These commands update the package list and upgrade installed packages on the Ubuntu machine.
+          During execution, the terminal may ask for confirmation. Type Y and press Enter to continue.
+          Sometimes a small popup window may appear during installation. Simply press Enter and it will disappear.
+        - After this step, the system packages managment are successfully updated.
+
+      - Install Docker : Since this is a new EC2 machine, Docker is not installed yet, so I need to install it.
+          #required
+          curl -fsSL https://get.docker.com -o get-docker.sh # Download the Docker installation script.
+          sudo sh get-docker.sh  # Run the Docker installation script.
+          sudo usermod -aG docker ubuntu # Add the Ubuntu user to the Docker group so Docker commands can run without
+          newgrp docker # Refresh the group permissions.
+          - Verify Docker Installation: To check whether Docker is installed and running correctly, use:
+             docker --version : This command displays the installed Docker version.
+      
+    ## 6. Configure EC2 as self-hosted runner:(Configure EC2 as a Self-Hosted GitHub Actions Runner)
+        setting>actions>runner>new self hosted runner> choose os> then run command one by one
+        The next step is to configure the EC2 machine as a self-hosted runner for GitHub Actions.
+        In this step, I am basically connecting my GitHub repository with the EC2 machine. This allows GitHub
+        Actions to automatically send the latest code to the EC2 instance whenever I push or commit new code.
+*       - First, go to my GitHub repository and open Settings.(make sure be in textsummarizer repository)
+        - On the left sidebar, go to: Actions → Runners
+        - Then click New Self-hosted Runner
+        - Select Linux as the operating system and keep the default settings
+        - GitHub will display several commands. Copy these commands one by one and paste them into the AWS EC2
+          terminal.
+        - While executing the commands in the terminal, you will see messages related to GitHub Actions.This means
+          GitHub is successfully connecting to the AWS EC2 machine.
+        - During setup, it may ask for:
+            --  group name
+            -- group number  
+          will keep it empty and press enter
+        - For optional fields, simply press Enterto  keep the default values
+        - When asked for the runner group, type:self-hosted. Then press Enter
+        - Keep the remaining settings as default and continue pressing Enter.
+        - Finally, copy and run the last command shown by GitHub. This command starts the runner service and 
+          connects the EC2 machine to GitHub Actions. After successful connection, go back to the Runners page in
+          GitHub. You should see the runner status as Idle, which means it is connected and waiting for jobs.
+          If you close the terminal or press `Ctrl + C`, the runner will stop. After refreshing the GitHub page,
+          the runner status will change from Idle to Offline
+          Therefore, the runner process must always remain running in the terminal
+          To start the runner again later, simply run the last command again. Once the runner shows Idle, it means
+          the self-hosted runner has been configured successfully and is ready to execute deployment jobs automatically.
 
 
+    ## 7. Setup github secrets:
+      - Configure GitHub Secrets for Deployment: go to your GitHub repository for the text summarization project.
+        - Open Settings → Secrets and Variables → Actions :
+        ++ Click New Repository Secret. Need to add all AWS secrets one by one:
+          1. Add AWS Access Key ID:
+            - Click New Repository Secret: In the Name field, enter: AWS_ACCESS_KEY_ID
+            - Open the CSV file downloaded earlier, such as:textsaccesskey.csv, Copy the first value before the
+              comma, which is the Access Key ID and paste it into the Secret field.
+            - Click Add Secret
+
+          2. Add AWS Secret Access Key:
+            - Again click New Repository Secret: In the Name field, enter: AWS_SECRET_ACCESS_KEY
+            - From the same CSV file, copy the value after the comma, which is the Secret Access Key. Paste it into
+              the Secret field.
+            - Click Add Secret
+
+          3. Add AWS Region:
+            - Click New Repository Secret again. In the Name field, enter: AWS_REGION
+            - In the Secret field, enter your AWS region, which is: us-west-1
+            - Then click Add Secret 
+          + Make sure you use the correct AWS region for your services.
+          
+          4. Add AWS ECR Login URI:
+             - Click New Repository Secret. In the Name field, enter: AWS_ECR_LOGIN_URI
+             - Use the ECR repository URL saved earlier in the README file during the ECR creation step.Copy only
+               the first part before the slash (`/`)which is: 566373416292.dkr.ecr.us-east-1.amazonaws.com and paste it into
+               the Secret field.
+             - Click Add Secret
+
+          5. Add ECR Repository Name:
+              - Click New Repository Secret again. In the Name field, enter: ECR_REPOSITORY_NAME
+              - Copy the repository name from the ECR URL (the part after the slash), which is: text-s and paste it
+                into the Secret field.
+              - Click Add Secret
+
+        ### Important Note: Do not share these secret keys with anyone. Anyone with access to these secrets may be
+             able to access your AWS account and services.
+
+    ## 8. Deployment: Now all the setup steps done and configured successfully, and the project is ready for deployment.
+          1. The next step is to push the changes to GitHub so the deployment process can start automatically.
+             First, run these Git commands:
+              - git add .
+              - git commit -m "CICD added"
+              - git push origin main
+          2. After pushing the code, go to your GitHub repository and refresh the page. You will see Actions running
+             automatically at the top.
+            - Open the Actions tab. You will see a workflow called “CICD added” running. Click on it to view all
+              workflow stages.
+                ++ At first, the "Continuous Integration" stage will run and turn green once completed successfully.
+                ++ Then the "Continuous Delivery" stage will start running in yellow. This means GitHub Actions is
+                   building the Docker image and pushing it to Amazon ECR. This step may take some time. All jobs 
+                   run automatically, so no manual work is required. You only need to write the `main.yml` workflow
+                   file once, and after that, every deployment happens automatically whenever code is pushed to GitHub.
+                ++ After some time, the Continuous Delivery stage will become green, and then the "Continuous Deployment"
+                    stage will start running in yellow. This stage:
+                      * Pulls the Docker image from ECR
+                      * Runs the container inside the EC2 instance
+                    Once this stage also becomes green, it means the deployment is completed successfully.
+
+          ** I prefer GitHub Actions because it is already integrated with GitHub, so I do not need to manually
+             configure extra tools. Other CI/CD tools such as Jenkins or CircleCI can also be used, but GitHub
+             Actions is simpler and more popular for GitHub projects.
+
+18. Access the Deployed Application:
+
+    - Go to the AWS Console.
+    - Open EC2 → Instances.
+    - Click on the Instance ID.
+    - Copy the Public IPv4 Address from the Instance Summary section.
+      At first, the application may not open because port `8080` is not allowed yet. So we need to configure
+      port mapping in the EC2 Security Group.
+
+  ## Port mapping:(Open Port 8080 in Security Group)
+    - Inside the EC2 Instance page, go to the Security tab.
+    - Open the Security Group link.
+    - Go to Inbound Rules.
+    - Click Edit Inbound Rules → Add Rule.
+        +Use these settings:
+            * Type: `Custom TCP`
+            * Protocol: `TCP`
+            * Port Range: `8080`
+            * Source: `Anywhere` 127.0.0.1
+            Then save the rules.
+
+  ## Open the Application:
+    - Go back to the EC2 Instance page.
+    - Copy the Public IPv4 address again.
+    - Open the browser and paste: http://<Public-IP>:8080
+    Now the FastAPI UI should open successfully.
+
+  ## Test the Model:
+    - Open the FastAPI UI.
+    - Click Try it Out.
+    - Execute the API request.
+  + Since this project uses a CPU instance, the first training process may take some time.After training is 
+    completed, the model will generate predictions successfully. Now the project is fully deployed and running correctly.
+
+  ## Future Deployments: 
+     For future deployments, whenever new code is pushed to GitHub:
+       - GitHub Actions will automatically redeploy the project.
+       - The workflow first checks whether an old container is running.
+       - If a container exists, it stops and removes it before running the updated version.
+         This ensures the latest application version is always deployed correctly.
+
+ ## Important: Stop AWS Resources to Avoid Charges:
+    After finishing the project, if you do not want to continue running the application, make sure to stop or remove
+    AWS resources to avoid unnecessary charges.
+
+      ### Stop EC2 Instance
+
+          - Go to EC2 → Instances
+          - Select the specific instance
+          - Click Instance State
+          - Choose Stop Instance
+
+
+      ### Delete ECR Repository:
+
+          - Go to Elastic Container Registry (ECR)
+          - Select the repository
+          - Click Delete
+
+      ### Delete IAM User:
+
+          - Go to IAM → Users
+          - Select the user you created (`texts`)
+          - Click Delete
+
+This completes the entire project implementation, CI/CD setup, deployment, and AWS resource cleanup process.
+
+
+        

@@ -1,0 +1,144 @@
+name: workflow  
+# Name of the CI/CD pipeline
+
+on:
+  push:
+    branches:
+      - main  
+      # Run workflow when code is pushed to main branch 
+
+    paths-ignore:
+      - 'README.md'  
+      # Ignore README changes (do not trigger pipeline)
+
+#  Give GitHub permission to access repo and AWS authentication
+permissions:
+  id-token: write  
+  # Allow GitHub to authenticate with AWS securely
+
+  contents: read  
+  # Allow reading repository code
+
+# CI (Continuous Integration)
+jobs:
+  integration:
+    name: Continuous Integration  
+    runs-on: ubuntu-latest  
+    # Run CI job on GitHub-hosted Ubuntu virtual machine
+
+    steps:
+      - name: Checkout Code  
+        uses: actions/checkout@v3  
+        # Download source code from GitHub repo to runner
+
+      - name: Lint code  
+        run: echo "Linting repository"  
+        # Check code style (placeholder step)
+
+      - name: Run unit tests  
+        run: echo "Running unit tests"  
+        # Run test cases (placeholder step)
+
+
+# CD Part 1 (Build & Push Docker Image to ECR)
+  build-and-push-ecr-image:
+    name: Continuous Delivery  
+    needs: integration  
+    runs-on: ubuntu-latest      # Runs only after CI is successful
+
+
+    steps:
+      - name: Checkout Code  
+        uses: actions/checkout@v3  
+        # Get latest code again
+
+      - name: Install Utilities  
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y jq unzip  
+        # Install required system tools.  Install helper tools for deployment
+
+      - name: Configure AWS credentials  
+        uses: aws-actions/configure-aws-credentials@v1  
+        # Connect GitHub to AWS securely using secrets
+
+        with:
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}  
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}  
+          aws-region: ${{ secrets.AWS_REGION }}  
+        # AWS credentials stored securely in GitHub secrets( Secure AWS login credentials)
+
+      - name: Login to Amazon ECR  
+        id: login-ecr  
+        uses: aws-actions/amazon-ecr-login@v1  
+        # Authenticate Docker with AWS ECR
+
+      # Build image and upload it to AWS ECR
+      - name: Build, tag, and push image to Amazon ECR  
+        id: build-image  
+        env:
+          ECR_REGISTRY: ${{ steps.login-ecr.outputs.registry }}  
+          ECR_REPOSITORY: ${{ secrets.ECR_REPOSITORY_NAME }}  
+          IMAGE_TAG: latest  
+
+        run: |
+          docker build -t $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG .
+          # Build Docker image
+
+          docker push $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG
+          # Push image to AWS ECR
+
+          echo "::set-output name=image::$ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG"
+          # Save image URL as output
+
+# CD Part 2 (Deploy on EC2)
+  Continuous-Deployment:
+    name: Continuous Deployment  
+    needs: build-and-push-ecr-image  
+    # Runs after image is pushed to ECR 
+
+    runs-on: self-hosted  
+    # Runs on EC2 instance (self-hosted runner)
+
+    steps:
+      - name: Checkout  
+        uses: actions/checkout@v3  
+        # Pull repository code on EC2 (Get code on EC2)
+
+      - name: Configure AWS credentials   # Allow EC2 to access AWS
+        uses: aws-actions/configure-aws-credentials@v1  
+        # Authenticate EC2 with AWS 
+
+        with:
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}  
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}  
+          aws-region: ${{ secrets.AWS_REGION }}  
+
+      - name: Login to Amazon ECR  # Authenticate EC2 with ECR
+        id: login-ecr  
+        uses: aws-actions/amazon-ecr-login@v1  
+        # Login Docker to ECR
+
+      - name: Pull latest images  # Download latest Docker image from ECR
+        run: |
+          docker pull ${{secrets.AWS_ECR_LOGIN_URI}}/${{ secrets.ECR_REPOSITORY_NAME }}:latest  
+        # Pull latest Docker image from ECR
+
+      # - name: Stop and remove container if running  # Stop old running container
+      #   run: |
+      #     docker ps -q --filter "name=texts" | grep -q . && docker stop texts && docker rm -fv texts  
+      # Stop old container if it exists
+
+      - name: Run Docker Image to serve users  
+        run: |
+          docker run -d -p 8080:8080 --name=texts \
+          -e AWS_ACCESS_KEY_ID=${{ secrets.AWS_ACCESS_KEY_ID }} \
+          -e AWS_SECRET_ACCESS_KEY=${{ secrets.AWS_SECRET_ACCESS_KEY }} \
+          -e AWS_REGION=${{ secrets.AWS_REGION }} \
+          ${{secrets.AWS_ECR_LOGIN_URI}}/${{ secrets.ECR_REPOSITORY_NAME }}:latest  
+        # Run new container and expose app on port 8080
+
+      - name: Clean previous images and containers  
+        run: |
+          docker system prune -f  
+        # Remove unused Docker resources
